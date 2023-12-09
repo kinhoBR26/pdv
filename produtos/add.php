@@ -8,6 +8,7 @@ if($_POST){
     $sql = "insert into produtos  (nome,preco,quantidade) values ('$nome','$preco','$quantidade')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
+    header("location: index.php");
 }
 ?>
 
@@ -20,6 +21,7 @@ if($_POST){
 </head>
 <body>
 <div class="container">
+    <?php include '../menu.php';?>
 <h1>Cadastro de produtos</h1>
 
 <form method="post" action="add.php">
@@ -31,7 +33,7 @@ if($_POST){
 
     <div class="mb-3">
         <label class="form-label">Preco Produto:</label>
-        <input type="number" name="preco" placeholder="Digite o preco do produto" required class="form-control">
+        <input type="text" name="preco" placeholder="Digite o preco do produto" required class="form-control">
     </div>
 
     <div class="mb-3">

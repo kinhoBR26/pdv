@@ -7,6 +7,7 @@ if($_POST){
     $sql = "insert into usuarios  (nome,email,senha) values ('$nome','$email','$senha')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
+    header("location: index.php");
 }
 ?>
 
@@ -18,6 +19,7 @@ if($_POST){
 </head>
 <body>
 <div class="container">
+    <?php include '../menu.php';?>
 <h1>Cadastro de Usuários</h1>
 
 <form method="post" action="add.php">

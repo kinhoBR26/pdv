@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="container">
+    <?php include '../menu.php';?>
     <h1>Listar Produtos <a href="add.php">+</a></h1>
 
     <table class="table">
