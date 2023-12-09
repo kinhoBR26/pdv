@@ -1,43 +1,43 @@
 <?php
-include ('conexao.php');
-if($_POST){
+
+include('../conexao.php');
+if ($_POST) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $sql = "insert into usuarios  (nome,email,senha) values ('$nome','$email','$senha')";
+    $sql = "insert into clientes (nome,email) values ('$nome','$email')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
 }
 ?>
-
 <html>
 <head>
-    <title>Cadastro de Usuários</title>
+<title>Cadastro de Clientes</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 </head>
 <body>
 <div class="container">
-<h1>Cadastro de Usuários</h1>
+<h1>Cadastro de Clientes</h1>
 
-<form method="post" action="usuarios_add.php">
+<form method="post" action="add.php">
+
     <div class="mb-3">
-        <label class="form-label">Digite seu Nome:</label>
+        <label class="form-label">Seu Nome:</label>
         <input type="text" name="nome" placeholder="Qual o seu nome?" required class="form-control">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Digite seu Email:</label>
+        <label class="form-label">Seu Email:</label>
         <input type="email" name="email" placeholder="Qual o seu Email?" required class="form-control">
     </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
 
-    <div class="mb-3">
-        <label class="form-label">Digite sua Senha:</label>
-        <input type="password" name="senha" placeholder="Senha" required class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
+
+
+
+
 
 </div>
 </body>

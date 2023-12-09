@@ -1,13 +1,6 @@
 <?php
-/*
- tabela produtos
-id
-nome
-preco
-quantidade
- */
 
-include ('conexao.php');
+include('../conexao.php');
 if($_POST){
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
@@ -29,7 +22,7 @@ if($_POST){
 <div class="container">
 <h1>Cadastro de produtos</h1>
 
-<form method="post" action="produtos_add.php">
+<form method="post" action="add.php">
 
     <div class="mb-3">
         <label class="form-label">Preco produto:</label>
