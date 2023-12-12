@@ -1,10 +1,12 @@
 <?php
-
+session_start();
+include('../seguranca.php');
 include('../conexao.php');
 if ($_POST) {
+    $usuario_id = $_SESSION['id'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $sql = "insert into clientes (nome,email) values ('$nome','$email')";
+    $sql = "insert into clientes (nome,email,usuario_id) values ('$nome','$email','$usuario_id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");

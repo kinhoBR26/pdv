@@ -1,4 +1,7 @@
-<?php include('../conexao.php'); ?>
+<?php
+include('../seguranca.php');
+include('../conexao.php');
+?>
 <html>
 <head>
     <title>Listar Produtos</title>

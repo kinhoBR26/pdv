@@ -1,11 +1,13 @@
 <?php
-
+session_start();
+include('../seguranca.php');
 include('../conexao.php');
 if($_POST){
+    $usuario_id = $_SESSION['id'];
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
     $quantidade = $_POST['quantidade'];
-    $sql = "insert into produtos  (nome,preco,quantidade) values ('$nome','$preco','$quantidade')";
+    $sql = "insert into produtos (nome,preco,quantidade,usuario_id) values ('$nome','$preco','$quantidade','$usuario_id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
@@ -27,7 +29,7 @@ if($_POST){
 <form method="post" action="add.php">
 
     <div class="mb-3">
-        <label class="form-label">Preco produto:</label>
+        <label class="form-label">Nome Do Produto:</label>
         <input type="text" name="nome" placeholder="Qual o nome do produto?" required class="form-control">
     </div>
 

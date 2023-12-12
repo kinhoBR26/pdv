@@ -1,9 +1,10 @@
 <?php
+include('../seguranca.php');
 include('../conexao.php');
 if($_POST){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $senha = md5($_POST['senha']);
     $sql = "insert into usuarios  (nome,email,senha) values ('$nome','$email','$senha')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();

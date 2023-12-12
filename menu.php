@@ -17,7 +17,7 @@
                         <a class="nav-link active" aria-current="page" href="/pdv/usuarios/index.php">Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/sair.php">Sair</a>
+                        <a class="nav-link active" aria-current="page" href="/pdv/sair.php">Sair</a>
                     </li>
                 </ul>
             </div>

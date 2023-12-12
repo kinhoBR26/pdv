@@ -12,7 +12,7 @@
     <h1>PDV</h1>
 
     <main class="form-signin w-100 m-auto">
-        <form action="inicio.php" method="post">
+        <form action="login.php" method="post">
             <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">Qual é seu login e senha?</h1>
 

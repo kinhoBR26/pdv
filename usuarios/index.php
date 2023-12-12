@@ -1,4 +1,7 @@
-<?php include('../conexao.php'); ?>
+<?php
+include('../conexao.php');
+include('../seguranca.php');
+?>
 <html>
 <head>
     <title>Listar Usuários</title>
