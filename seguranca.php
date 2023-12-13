@@ -1,6 +1,6 @@
 <?php
-    session_start();
+    @session_start();
         if($_SESSION['usuario_logado']!=true){
-            header("location: /pdv/index.php");
+            header("location: /index.php");
         }
 ?>

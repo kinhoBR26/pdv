@@ -20,6 +20,7 @@ include('../conexao.php');
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
+            <th scope="col">Telefone</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -32,6 +33,7 @@ include('../conexao.php');
             <th scope="row"><?php echo $linha["id"]?></th>
             <td><?php echo $linha["nome"]?></td>
             <td><?php echo $linha["email"]?></td>
+            <td><?php echo $linha["telefone"]?></td>
             <td>
                 <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger">Excluir</button></a>
                 <a href="edit.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>

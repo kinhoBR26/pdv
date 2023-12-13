@@ -6,7 +6,8 @@ if ($_POST) {
     $usuario_id = $_SESSION['id'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $sql = "insert into clientes (nome,email,usuario_id) values ('$nome','$email','$usuario_id')";
+    $telefone = $_POST['telefone'];
+    $sql = "insert into clientes (nome,email,telefone,usuario_id) values ('$nome','$email','$telefone','$usuario_id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
@@ -35,6 +36,12 @@ if ($_POST) {
         <label class="form-label">Seu Email:</label>
         <input type="email" name="email" placeholder="Qual o seu Email?" required class="form-control">
     </div>
+
+    <div class="mb-3">
+        <label class="form-label">Seu Telefone:</label>
+        <input type="text" name="telefone" placeholder="Qual o seu telefone?" required class="form-control">
+    </div>
+
     <button type="submit" class="btn btn-primary">Cadastrar</button>
 
 </form>
