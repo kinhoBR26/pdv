@@ -24,15 +24,17 @@ DROP TABLE IF EXISTS `clientes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefone` varchar(45) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `nome_UNIQUE` (`nome`),
+  UNIQUE KEY `telefone_UNIQUE` (`telefone`),
   KEY `fk_usuarios_clientes_idx` (`usuario_id`),
   CONSTRAINT `fk_usuarios_clientes` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (2,'felipe','felipe@gmail.com',1);
+INSERT INTO `clientes` VALUES (2,'felipe','felipe@gmail.com','1234',1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +101,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'marcus','marcus@gmail.com','14459805'),(2,'felipe','felipe@gmail.com','202cb962ac59075b964b07152d234b70');
+INSERT INTO `usuarios` VALUES (1,'marcus','marcus@gmail.com','c57c1433c8efdbde83fa85ec8c53bfcb'),(2,'felipe','felipe@gmail.com','202cb962ac59075b964b07152d234b70');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-13 10:28:59
+-- Dump completed on 2023-12-13 11:05:12
