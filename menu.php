@@ -17,6 +17,9 @@
                         <a class="nav-link active" aria-current="page" href="/usuarios/index.php">Usuários</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/perfil.php">Perfil</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/sair.php">Sair</a>
                     </li>
                 </ul>
