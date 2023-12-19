@@ -12,6 +12,11 @@ if ($login) {
     $_SESSION['id']=$login['id'];
     $_SESSION['nome']=$login['nome'];
     $_SESSION['email']=$login['email'];
+    if($login['img']!=""){
+        $_SESSION['img']=$login['img'];
+    }else{
+        $_SESSION['img']= false;
+    }
     header("location: inicio.php");
 
     echo "Login bem-sucedido. Bem-vindo, " . $login['email'] . "!";

@@ -1,6 +1,18 @@
 <?php
-    session_start();
-    print_r($_SESSION['img']);
+if($_FILES){
+    $dir = "img_perfil/";
+// recebendo o arquivo multipart
+    $file = $_FILES["img"];
+    $caminho_da_img = $dir."/".$file['name'];
+// Move o arquivo da pasta temporaria de upload para a pasta de destino
+    if (move_uploaded_file($file["tmp_name"], $caminho_da_img)) {
+        echo "Arquivo enviado com sucesso!";
+    }
+    else {
+        echo "Erro, o arquivo n&atilde;o pode ser enviado.";
+    }
+    //com o id da sessão do usuario vamos atualizar a tabela usuarios no campo img.
+}
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -13,22 +25,11 @@
 </head>
 <body>
 <div class="container">
-    <?php include 'menu.php';?>
-    Olá <?php echo $_SESSION['nome']?>, Seja Bem Vindo!<br>
 
-
-    <a href="alterar_senha.php" class="btn btn-primary">Alterar Senha</a><br><br>
-    <button type="button" class="btn btn-secondary">Alterar Imagem</button><br><br>
-
-    <?php
-    if($_SESSION['img'] == false){
-        echo "<img src='/img/sem_imagem_perfil.png' width='100px' height='auto'>";
-    }else{
-        $caminho_img = $_SESSION['img'];
-        echo "<img src='$caminho_img' width='100px' height='auto'>";
-    }
-    ?>
-
+    <form method="post" action="alterar_img.php" enctype="multipart/form-data">
+        <input type="file" name="img" class="form-control">
+        <button type="submit" class="btn btn-primary">Atualizar Senha</button>
+    </form>
 
 
 
