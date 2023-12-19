@@ -35,7 +35,7 @@ include('../conexao.php');
                 <td><?php echo $linha["quantidade"]?></td>
                 <td>
                     <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger">Excluir</button></a>
-                    <a href="edit.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
+                    <a href="update.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
                 </td>
             </tr>
         <?php }?>
