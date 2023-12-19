@@ -20,7 +20,6 @@ include('../seguranca.php');
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
-            <th scope="col">Senha</th>
         </tr>
         </thead>
         <tbody>
@@ -32,10 +31,9 @@ include('../seguranca.php');
                 <th scope="row"><?php echo $linha["id"]?></th>
                 <td><?php echo $linha["nome"]?></td>
                 <td><?php echo $linha["email"]?></td>
-                <td><?php echo $linha["senha"]?></td>
                 <td>
                     <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger">Excluir</button></a>
-                    <a href="edit.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
+                    <a href="update.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
                 </td>
             </tr>
         <?php }?>
