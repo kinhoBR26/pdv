@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    print_r($_SESSION['img']);
+include('seguranca.php');
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -15,11 +14,8 @@
 <div class="container">
     <?php include 'menu.php';?>
     Olá <?php echo $_SESSION['nome']?>, Seja Bem Vindo!<br>
-
-
     <a href="alterar_senha.php" class="btn btn-primary">Alterar Senha</a><br><br>
-    <button type="button" class="btn btn-secondary">Alterar Imagem</button><br><br>
-
+    <a href="alterar_img.php" class="btn btn-secondary">Alterar Imagem</a><br><br>
     <?php
     if($_SESSION['img'] == false){
         echo "<img src='/img/sem_imagem_perfil.png' width='100px' height='auto'>";
@@ -28,11 +24,6 @@
         echo "<img src='$caminho_img' width='100px' height='auto'>";
     }
     ?>
-
-
-
-
-
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
