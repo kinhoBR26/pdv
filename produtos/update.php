@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../seguranca.php');
 include('../conexao.php');
 if ($_FILES) {
