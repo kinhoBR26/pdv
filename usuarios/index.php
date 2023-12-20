@@ -10,7 +10,7 @@ include('../seguranca.php');
 <body>
 <div class="container">
     <?php include '../menu.php';?>
-    <h1>Listar Usuários <a href="add.php">+</a></h1>
+    <h1>Listar Usuários <a href="add.php"><i class="bi bi-plus-circle-fill"></i></a></h1>
 
     <table class="table">
         <thead>
@@ -32,8 +32,8 @@ include('../seguranca.php');
                 <td><?php echo $linha["email"]?></td>
                 <td><a href="<?php echo $linha["img"]?>" target="_blank"><img src="<?php echo $linha["img"]?>" width="40px"height="auto"></a></td>
                 <td>
-                    <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger">Excluir</button></a>
-                    <a href="update.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
+                    <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
+                    <a href="update.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark"><i class="bi bi-pencil-square"></i></button></a>
                 </td>
             </tr>
         <?php }?>
