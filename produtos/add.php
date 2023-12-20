@@ -8,11 +8,12 @@ if($_FILES){
     $preco = str_ireplace('.','',$preco);
     $preco = str_ireplace(',','.',$preco);
     $quantidade = $_POST['quantidade'];
+    $fonecedor_id = $_POST['fornecedor_id'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
     $caminho_da_img = $dir."/".$file['name'];
     move_uploaded_file($file["tmp_name"], $caminho_da_img);
-    $sql = "insert into produtos (nome,preco,quantidade,img,usuario_id) values ('$nome','$preco','$quantidade','$caminho_da_img','$usuario_id')";
+    $sql = "insert into produtos (nome,preco,quantidade,img,usuario_id,fornecedor_id) values ('$nome','$preco','$quantidade','$caminho_da_img','$usuario_id','$fonecedor_id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
@@ -59,6 +60,21 @@ if($_FILES){
     <div class="mb-3">
         <label class="form-label">Imagem produto:</label>
         <input type="file" name="img" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fornecedor do produto:</label>
+        <select class="form-label" name="fornecedor_id">
+            <option value=""></option>
+            <?php
+            $consulta = $conexao->query("select * from fornecedores");
+            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
+            ?>
+            <option value="<?php echo $linha['id'];?>"><?php echo $linha['nome'];?></option>
+            <?php
+            }
+            ?>
+        </select>
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar produto</button>

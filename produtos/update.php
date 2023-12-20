@@ -9,11 +9,12 @@ if ($_FILES) {
     $preco = str_ireplace('.','',$preco);
     $preco = str_ireplace(',','.',$preco);
     $quantidade = $_POST['quantidade'];
+    $fornecedor_id = $_POST['fornecedor_id'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
     $caminho_da_img = $dir."/".$file['name'];
     move_uploaded_file($file["tmp_name"], $caminho_da_img);
-    $sql = "UPDATE produtos SET nome = '$nome',preco = '$preco',quantidade='$quantidade',usuario_id='$usuario_id',img='$caminho_da_img' WHERE (id = '$id')";
+    $sql = "UPDATE produtos SET nome = '$nome',preco = '$preco',quantidade='$quantidade',usuario_id='$usuario_id',img='$caminho_da_img',fornecedor_id='$fornecedor_id' WHERE (id = '$id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
@@ -64,7 +65,24 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 
         <div class="mb-3">
             <label class="form-label">Imagem produto:</label>
-            <input type="file" name="img" required class="form-control">
+            <input type="file" name="img" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Fornecedor do produto:</label>
+            <select class="form-label" name="fornecedor_id">
+                <option value=""></option>
+                <?php
+
+                $consulta = $conexao->query("select * from fornecedores");
+                while ($linha_fornecedor = $consulta->fetch(PDO::FETCH_ASSOC)){
+                    ?>
+                    <option value="<?php echo $linha_fornecedor['id'];?>" <?php if($linha_fornecedor['id']==$linha['fornecedor_id']) echo "selected";?>><?php echo $linha_fornecedor['nome'];?></option>
+                    <?php
+                }
+                ?>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Atualizar</button>
