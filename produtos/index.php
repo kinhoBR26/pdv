@@ -5,7 +5,7 @@ include('../conexao.php');
 <html>
 <head>
     <title>Listar Produtos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <?php include('../header_bootstrap.php');?>
 </head>
 <body>
 <div class="container">
@@ -20,19 +20,31 @@ include('../conexao.php');
             <th scope="col">Preco</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Imagem</th>
+            <th scope="col">Fornecedor</th>
         </tr>
         </thead>
         <tbody>
         <?php
-        $consulta = $conexao->query("select * from produtos");
+        $consulta = $conexao->query("SELECT 
+                                                produtos.id,
+                                                produtos.nome,
+                                                produtos.preco,
+                                                produtos.quantidade,
+                                                produtos.img,
+                                                fornecedores.nome AS NomeFornecedor
+                                      FROM
+                                                produtos
+                                      LEFT JOIN
+                                                fornecedores ON (fornecedores.id = produtos.fornecedor_id)");
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
             ?>
             <tr>
                 <th scope="row"><?php echo $linha["id"]?></th>
                 <td><?php echo $linha["nome"]?></td>
-                <td><?php echo $linha["preco"]?></td>
+                <td>R$ <?php echo number_format($linha["preco"],2,",","."); ?></td>
                 <td><?php echo $linha["quantidade"]?></td>
                 <td><a href="<?php echo $linha["img"]?>" target="_blank"><img src="<?php echo $linha["img"]?>" width="40px"height="auto"></a></td>
+                <td><?php echo $linha["NomeFornecedor"]?></td>
                 <td>
                     <a href="delete.php?id=<?php echo $linha["id"]?>" onclick="return confirm('Deseja realmente excluir?')"><button type="button" class="btn btn-danger">Excluir</button></a>
                     <a href="update.php?id=<?php echo $linha["id"]?>"> <button type="button" class="btn btn-dark">Editar</button></a>
