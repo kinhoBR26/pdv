@@ -1,6 +1,7 @@
 <?php
 include('../seguranca.php');
 include('../conexao.php');
+$mensagem_erro = "";
 if($_FILES){
     $usuario_id = $_SESSION['id'];
     $nome = $_POST['nome'];
@@ -11,12 +12,17 @@ if($_FILES){
     $fonecedor_id = $_POST['fornecedor_id'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
+    $formato_img = $file['type'];
+    if($formato_img == "image/jpeg" or $formato_img == "image/png"){
     $caminho_da_img = $dir."/".$file['name'];
     move_uploaded_file($file["tmp_name"], $caminho_da_img);
     $sql = "insert into produtos (nome,preco,quantidade,img,usuario_id,fornecedor_id) values ('$nome','$preco','$quantidade','$caminho_da_img','$usuario_id','$fonecedor_id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
+    }else{
+        $mensagem_erro = "Formato inválido!";
+    }
 }
 ?>
 <html>
@@ -78,9 +84,15 @@ if($_FILES){
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar produto</button>
+    <?php
+    if($mensagem_erro !=""){
+        echo "<div class='alert alert-danger' role='alert'>
+                $mensagem_erro
+              </div>";
+    }
+    ?>
 
 </form>
-
 
 </div>
 </body>
