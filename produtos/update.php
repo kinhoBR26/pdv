@@ -1,6 +1,7 @@
 <?php
 include('../seguranca.php');
 include('../conexao.php');
+$mensagem_erro = "";
 if ($_FILES) {
     $usuario_id = $_SESSION['id'];
     $id = $_POST['id'];
@@ -12,12 +13,17 @@ if ($_FILES) {
     $fornecedor_id = $_POST['fornecedor_id'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
+    $formato_img = $file['type'];
+    if($formato_img == "image/jpeg" or $formato_img == "image/png"){
     $caminho_da_img = $dir."/".$file['name'];
     move_uploaded_file($file["tmp_name"], $caminho_da_img);
     $sql = "UPDATE produtos SET nome = '$nome',preco = '$preco',quantidade='$quantidade',usuario_id='$usuario_id',img='$caminho_da_img',fornecedor_id='$fornecedor_id' WHERE (id = '$id')";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
     header("location: index.php");
+    }else{
+        $mensagem_erro = "Formato inválido!";
+    }
 }
 $id_produto_alterar = $_GET['id'];
 $consulta = $conexao->query("select * from produtos where id='$id_produto_alterar'");
@@ -44,7 +50,7 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
     <?php include '../menu.php';?>
     <h1>Atualizar Produto</h1>
 
-    <form method="post" action="update.php" enctype="multipart/form-data">
+    <form method="post" action="update.php?id=<?php echo $linha['id']?>" enctype="multipart/form-data">
 
         <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
 
@@ -87,6 +93,13 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 
         <button type="submit" class="btn btn-primary">Atualizar</button>
 
+        <?php
+        if($mensagem_erro !=""){
+            echo "<div class='alert alert-danger' role='alert'>
+                $mensagem_erro
+              </div>";
+        }
+        ?>
     </form>
 </div>
 </body>
