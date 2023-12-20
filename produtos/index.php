@@ -30,7 +30,7 @@ include('../conexao.php');
             <tr>
                 <th scope="row"><?php echo $linha["id"]?></th>
                 <td><?php echo $linha["nome"]?></td>
-                <td><?php echo $linha["preco"]?></td>
+                <td>R$ <?php echo number_format($linha["preco"],2,",","."); ?></td>
                 <td><?php echo $linha["quantidade"]?></td>
                 <td><a href="<?php echo $linha["img"]?>" target="_blank"><img src="<?php echo $linha["img"]?>" width="40px"height="auto"></a></td>
                 <td>

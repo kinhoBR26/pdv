@@ -1,11 +1,12 @@
 <?php
-session_start();
 include('../seguranca.php');
 include('../conexao.php');
 if($_FILES){
     $usuario_id = $_SESSION['id'];
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
+    $preco = str_ireplace('.','',$preco);
+    $preco = str_ireplace(',','.',$preco);
     $quantidade = $_POST['quantidade'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
@@ -21,6 +22,17 @@ if($_FILES){
 <head>
 <title>Cadastro de produtos</title>
     <?php include('../header_bootstrap.php');?>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/gh/plentz/jquery-maskmoney@master/dist/jquery.maskMoney.min.js" type="text/javascript"></script>
+    <script>
+        $(function(){
+            $('#preco').maskMoney({
+                prefix:'',
+                allowNegative: true,
+                thousands:'.', decimal:',',
+                affixesStay: true});
+        })
+    </script>
 </head>
 <body>
 <div class="container">
@@ -36,7 +48,7 @@ if($_FILES){
 
     <div class="mb-3">
         <label class="form-label">Preco Produto:</label>
-        <input type="text" name="preco" placeholder="Digite o preco do produto" required class="form-control">
+        <input type="text" name="preco" id="preco" placeholder="Digite o preco do produto" required class="form-control">
     </div>
 
     <div class="mb-3">
@@ -46,7 +58,7 @@ if($_FILES){
 
     <div class="mb-3">
         <label class="form-label">Imagem produto:</label>
-        <input type="file" name="img" required class="form-control">
+        <input type="file" name="img" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar produto</button>

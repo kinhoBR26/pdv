@@ -5,7 +5,9 @@ if ($_FILES) {
     $usuario_id = $_SESSION['id'];
     $id = $_POST['id'];
     $nome = $_POST['nome'];
-    $preco = $_POST['preco'];
+    $preco=$_POST['preco'];
+    $preco = str_ireplace('.','',$preco);
+    $preco = str_ireplace(',','.',$preco);
     $quantidade = $_POST['quantidade'];
     $dir = "../img_produtos";
     $file = $_FILES['img'];
@@ -24,6 +26,17 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 <head>
     <title>Atualizar Clientes</title>
     <?php include('../header_bootstrap.php');?>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/gh/plentz/jquery-maskmoney@master/dist/jquery.maskMoney.min.js" type="text/javascript"></script>
+    <script>
+        $(function(){
+            $('#preco').maskMoney({
+                prefix:'',
+                allowNegative: true,
+                thousands:'.', decimal:',',
+                affixesStay: true});
+        })
+    </script>
 </head>
 <body>
 <div class="container">
@@ -41,7 +54,7 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 
         <div class="mb-3">
             <label class="form-label">Preço do Produto:</label>
-            <input type="text" name="preco" placeholder="Qual o preço do produto?" required class="form-control" value="<?php echo $linha['preco']?>">
+            <input type="text" name="preco" id="preco" placeholder="Qual o preço do produto?" required class="form-control" value="<?php echo number_format($linha["preco"],2,",","."); ?>">
         </div>
 
         <div class="mb-3">
